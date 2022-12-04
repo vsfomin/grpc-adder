@@ -31,6 +31,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer conn.Close()
 
 	c := proto.NewAdderClient(conn)
 
@@ -44,4 +45,18 @@ func main() {
 	}
 	log.Println(mes.GetBody())
 	log.Println(res.GetResult())
+
+	//Book creating
+	book := &proto.Book{
+		Bid:         1,
+		Title:       "War and Peace",
+		Author:      "Lev Tolstoy",
+		Description: "Great book for everyone",
+	}
+
+	crtBook, err := c.CreateBook(context.Background(), &proto.CreateBookRequest{Book: book})
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println("The book with ID: ", crtBook.GetBid(), " was added to the system!")
 }

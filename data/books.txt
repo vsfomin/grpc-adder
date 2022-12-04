@@ -1,0 +1,6 @@
+{
+ "bid": 1,
+ "title": "War and Peace",
+ "author": "Lev Tolstoy",
+ "description": "Great book for everyone"
+}
