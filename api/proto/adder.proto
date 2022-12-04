@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/vsfomin/grpc-adder/api/proto";
+
+service Adder {
+    rpc Add(AddRequest) returns (AddResponse) {}
+    rpc SayHello(Message) returns (Message) {}
+}
+
+message AddRequest {
+    int32 x = 1;
+    int32 y = 2;
+}
+
+message AddResponse {
+    int32 result = 1;
+}
+
+message Message {
+  string body = 1;
+}
